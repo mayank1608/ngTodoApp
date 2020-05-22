@@ -1,0 +1,43 @@
+<div class="row justify-content-center md-3">
+    <div class="col-md-6 mb-3 text-center">
+        <h1>Todo Categories</h1>
+        <p class="text-info">Add Category for todo's</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <form #f="ngForm" (ngSubmit)="f.form.valid && onSubmit(f)" class="form-inline">
+            <div class="col-md-9 form-group">
+                <input type="text" name="categoryName" placeholder="Add new categories here" class="form-control-plaintext box-shadow w-100" [(ngModel)]="categoryName" required #category='ngModel' [ngClass]="{'border-danger': f.submitted && category.invalid }">
+            </div>
+            
+            <button type="submit" class="btn col-md-3 btn-todo btn-primary box-shadow btn-block">{{dataStatus}} Category</button>
+            <div class="text-danger ml-3" *ngIf="f.submitted && category.invalid && category.errors.required"><small>Category is Required</small></div>
+        </form>
+    </div>
+</div>
+
+<div class="row category-list">
+    <div class="col-md-3" *ngFor="let category of categoriesData">
+        <div class="card box-shadow" [style.border-left-color]="category.data.colorCode">
+            <div class="card-body">
+                <span class="d-none">{{ category.id }} </span><!--this is just for info -->
+                <div class="clearfix">
+                    <div class="float-left">
+                        <div class="badge badge-primary text-uppercase">category</div>
+                    </div>
+                    <div class="float-right cat-tools">
+                      <small><i class="fa fa-pencil-alt text-success" (click)="onEdit(category.data.category,category.id)"></i></small>
+                      <small><i class="fas fa-trash text-danger" (click)="onDelete(category.id)"></i></small>
+                    </div>
+                </div>
+                <div class="todo-content" [routerLink]='["/todo", category.id]'>
+                    <h3 [style.color]="category.data.colorCode">{{category.data.category}}</h3>
+                    <small class="text-secondary">Click here to add todo items for <strong>{{category.data.category}}</strong></small>
+                </div>
+                <span class="badge badge-danger" [routerLink]='["/todo", category.id]'>{{category.data.todoCount}} - Todos</span>
+            </div>
+        </div>
+    </div>
+</div>

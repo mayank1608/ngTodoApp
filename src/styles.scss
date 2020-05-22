@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+*{transition: all 0.5s ease-in-out;}
+*:focus{outline: 0;}
+body{
+    background-image: url(assets/images/body-bg.png);
+    background-size: cover;
+}
+.box-shadow {
+    -webkit-box-shadow: 0px 5px 10px 2px rgba(51, 51, 51, 0.35);
+    -moz-box-shadow: 0px 5px 10px 2px rgba(51, 51, 51, 0.35);
+    box-shadow: 0px 5px 10px 2px rgba(51, 51, 51, 0.35);
+}
+.form-control-plaintext{
+    background-color: #f5f5f5!important;
+    height: 60px;
+    padding-left: 15px!important;
+    padding-right: 15px!important;
+}
+.btn-todo{
+    height: 60px!important;
+    padding-left: 15px!important;
+    padding-right: 15px!important;
+    border-radius: 0!important;
+}
+.border-danger{
+    border: 1px solid red!important;
+}

@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "todo-ng-app",
+      "public": "dist/todo-ng-app",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

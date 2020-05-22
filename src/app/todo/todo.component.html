@@ -1,0 +1,45 @@
+<div class="row justify-content-center md-3">
+    <div class="col-md-6 mb-3 text-center">
+        <h1>Todos</h1>
+        <p class="text-info">Add todo's</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <form #t="ngForm" (ngSubmit)="t.form.valid && onSubmit(t)" class="form-inline mb-5">
+            <div class="col-md-9 form-group">
+                <input type="text" name="todoText" placeholder="Add new todos here" class="form-control-plaintext box-shadow w-100" [ngClass]="{'border-danger':todo.invalid && t.submitted}" [(ngModel)]="newTodoName"  #todo="ngModel"  required>
+            </div>
+            <button type="submit" class="btn col-md-3 btn-todo btn-primary box-shadow btn-block">{{dataStatus}} Todo</button>
+            <small class="text-danger ml-3" *ngIf="todo.invalid && t.submitted && todo.errors.required">Todo is required</small>
+        </form>
+    </div>
+</div>
+
+<div class="row justify-content-center todo-list">
+    <div class="col-md-6">
+        <div class="card box-shadow mb-4" *ngFor="let todo of todosList">
+            <div class="card-body">
+                <div class="clearfix">
+                    <div class="float-left text-secondary">
+                        <small *ngIf="!todo.data.isCompleted"><i class="far fa-circle text-danger mr-3"></i></small>
+                        <small *ngIf="todo.data.isCompleted"><i class="fas fa-check text-success mr-3"></i></small>
+                        <span *ngIf="todo.data.isCompleted"> {{ todo.data.todo }} </span>
+                        <del *ngIf="!todo.data.isCompleted"> {{ todo.data.todo }} </del>
+                    </div>
+                    <div class="float-right text-secondary">
+                        <small *ngIf="!todo.data.isCompleted"><i class="far fa-check-circle text-success" (click)="onComplete(todo.id)"></i></small>
+                        <small *ngIf="todo.data.isCompleted"><i class="fas fa-times-circle text-danger" (click)="onIncomplete(todo.id)"></i></small>
+                        <div class="todo-tools">
+                            <small>
+                                <i class="fa fa-pencil-alt text-success" (click)='onEdit(todo.id,todo.data.todo)'></i>
+                                <i class="fas fa-trash text-danger" (click)="onDelete(todo.id)"></i>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

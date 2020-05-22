@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "todoappdb-487bd": {
+      "hosting": {
+        "todo-ng-app": [
+          "todoappdb-487bd"
+        ]
+      }
+    }
+  }
+}
